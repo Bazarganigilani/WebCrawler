@@ -1,10 +1,15 @@
 import nltk
 
 class keywordHandler():
+
+    #By default each article coud have 5 keywords.
     def __init__(self, corpusPath='C:\\nltk_data', numberofKeywords=5):
         self.corpusPath = corpusPath
         self.numberofKeywords = numberofKeywords
 
+
+    #Get articles having the specific keyword. A keyword in an article is the word having the higher frequency
+    #in comparison to other words. It can only represent a noun.
 
     def getKeywords(self, text):
         # words=text.split(' ')
