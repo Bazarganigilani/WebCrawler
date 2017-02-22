@@ -18,10 +18,10 @@ def main(argv):
           print 'main.py -o <option> [ -k <keyword_name> ]'
           print "Available options are:"
           print "   crawl   Run crawler to crawl BBC.com"
-          print "   search  -k <keyword_name>    Fetch articles by a specific keyword"
+          print "   search  -k   Fetch articles by a specific keyword"
           sys.exit(2)
       elif opt in ("-o", "--option"):
-           if arg=="crawl":
+           if arg.lower()=="crawl":
                scrapy_command = 'scrapy runspider {spider_name} -a crawling_level="{param_1}"'.format(
                    spider_name='src/crawler.py',
                    param_1=crawling_level)
@@ -32,11 +32,7 @@ def main(argv):
                 api.getArticlesbyKeywords(arg)
 
       elif():
-          print "The correct usage is as follow:"
-          print 'main.py -o <option> [ -k <keyword_name> ]'
-          print "Available options are:"
-          print "   crawl   Run crawler to crawl BBC.com"
-          print "   search  -k <keyword_name>    Fetch articles by a specific keyword"
+          print "You have entreted an incoorect parameter. To see help, run the program with -h'"
           sys.exit(2)
 
 if __name__ == "__main__":
