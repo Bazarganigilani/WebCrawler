@@ -57,6 +57,7 @@ class BBCSpider(Spider):
       print ("Starting traversing them")
 
       linkPattern = re.compile("^\/[\s\S]*")
+
       for title in titles:
           if not title in crawledTitles:
               crawledTitles.append(title)
