@@ -7,7 +7,6 @@ class keywordHandler():
         self.corpusPath = corpusPath
         self.numberofKeywords = numberofKeywords
 
-
     #Get articles having the specific keyword. A keyword in an article is the word having the higher frequency
     #in comparison to other words. It can only represent a noun.
 
