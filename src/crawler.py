@@ -11,7 +11,6 @@ from lxml.html.clean import Cleaner
 from pip._vendor import requests
 from scrapy.http import Request
 from scrapy.spiders import Spider
-
 from keyword_handler import keywordHandler
 
 class BBCItem(scrapy.Item):
