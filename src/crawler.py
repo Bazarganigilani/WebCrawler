@@ -81,9 +81,7 @@ class BBCSpider(Spider):
 
               response = requests.get(link)
               innerTree = fromstring(response.text.encode('utf-8'))
-              #if count==1:
-                #print(str(response.text))
-              # innerTree = fromstring( """"<a class ="api" href="href"><div><p>text1</p> <p>text2</p></div></a>""")
+
               """
               api = urllib2.urlopen("http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm")
               page = api.read()
@@ -113,38 +111,42 @@ class BBCSpider(Spider):
 
               cleanedInnerBodyText=" ".join(innerBodyText.split())
 
-
-              client = pymongo.MongoClient(
-                  "mongodb://mahdi:Isentia@aws-ap-southeast-1-portal.2.dblayer.com:15312,aws-ap-southeast-1-portal.0.dblayer.com:15312/BBCArticles?ssl=true",
-                  ssl_cert_reqs=ssl.CERT_NONE)
-
-              mydb = client['BBCArticles']
-              my_collection = mydb['Articles']
-
-              keyword_handler= keywordHandler()
-
-
-              keywords=keyword_handler.getKeywords(cleanedInnerBodyText)
-
-              print("innerBody text")
-              print (cleanedInnerBodyText)
-
-              print("keywords are...")
-
-              print keywords
-
-              myrecord = {"Link": link,
-                          "Title": title,
-                          "HeadLine": headline,
-                          "BodyText":innerBodyText,
-                          "Keywords":keywords,
-                          "date": datetime.datetime.utcnow()
-                          }
               try:
-                  print("Inserting the record in the DB")
+                  print("Inserting the record into the DB")
+                  client = pymongo.MongoClient(
+                      "mongodb://mahdi:Isentia@aws-ap-southeast-1-portal.2.dblayer.com:15312,aws-ap-southeast-1-portal.0.dblayer.com:15312/BBCArticles?ssl=true",
+                      ssl_cert_reqs=ssl.CERT_NONE)
+
+                  mydb = client['BBCArticles']
+                  my_collection = mydb['Articles']
+
+                  keyword_handler= keywordHandler()
+
+
+                  keywords=keyword_handler.getKeywords(cleanedInnerBodyText)
+
+                  """
+
+                  print("innerBody text")
+                  print (cleanedInnerBodyText)
+
+                  print("keywords are...")
+
+                  print keywords
+                  """
+
+                  myrecord = {"Link": link,
+                              "Title": title,
+                              "HeadLine": headline,
+                              "BodyText":innerBodyText,
+                              "Keywords":keywords,
+                              "date": datetime.datetime.utcnow()
+                              }
+
+
                   result = my_collection.insert_one(myrecord, False)
-              except Exception:
-                  print "Unexpected error while inserting record to the DB : ", sys.exc_info()[0]
+              except Exception as ex:
+                  print "Unexpected error while inserting record to the DB : ", ex
                   print ("Application exists.")
                   sys.exit(2)
               yield item
