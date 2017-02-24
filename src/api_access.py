@@ -16,10 +16,14 @@ class API_Access():
             my_collection = mydb['Articles']
             my_collection.create_index([("Keywords.key", "text")])
             print 'Articles containing  higher occurences of the keyword is sorted as follow:'
-            for doc in my_collection.find({"Keywords":{"$elemMatch" : {"$elemMatch": {"$in": [keyword]}}}}):
+            #for doc in my_collection.find({"Keywords":{"$elemMatch" : {"$elemMatch": {"$in": [keyword]}}}}):
+            for doc in my_collection.find(
+                    {"$text": {"$search": keyword}}):#.sort({"score": {"$meta": "textScore"}}):
                 print(doc)
-        except Exception:
-            print "Unexpected error while connecting to the DB : ", sys.exc_info()[0]
+        except Exception as ex:
+            print "Unexpected error while connecting to the DB : ", ex
             print ("Application exists.")
             sys.exit(2)
 
+#api=API_Access()
+##api.getArticlesbyKeywords("north")
