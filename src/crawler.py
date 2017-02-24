@@ -14,7 +14,6 @@ from scrapy.spiders import Spider
 
 from keyword_handler import keywordHandler
 
-
 class BBCItem(scrapy.Item):
   title = scrapy.Field()
 
