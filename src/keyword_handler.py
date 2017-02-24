@@ -47,5 +47,6 @@ class keywordHandler():
 
         # finalWords=list(set(nltk.word_tokenize(text)) - set(nltk.corpus.stopwords.words('english')))
 
-        dict=[[word, count] for (word,count) in fdist]
+        dict=[{'key': word, 'score' :count} for (word,count) in fdist]
+        #dict=[[word, count] for (word,count) in fdist]
         return dict
