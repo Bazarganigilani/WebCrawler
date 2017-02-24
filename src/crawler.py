@@ -40,7 +40,6 @@ class BBCSpider(Spider):
 
       # print("Links are %s" %links)
 
-
       # We stored already crawled links in this list
       crawledLinks = []
 
