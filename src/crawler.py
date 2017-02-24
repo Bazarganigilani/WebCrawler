@@ -43,7 +43,6 @@ class BBCSpider(Spider):
       # We stored already crawled links in this list
       crawledLinks = []
 
-
       for link in links:
           # If it is a proper link and is not checked yet, yield it to the Spider
           # if linkPattern.match(link) and not link in crawledLinks:
