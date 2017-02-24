@@ -2,7 +2,6 @@ import datetime
 import re
 import ssl
 import sys
-
 import pymongo
 import scrapy
 from lxml.etree import tostring as htmlstring
