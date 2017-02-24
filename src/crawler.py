@@ -29,8 +29,8 @@ class BBCSpider(Spider):
       mydb = client['BBCArticles']
       my_collection = mydb['Articles']
       my_collection.delete_many({})
-  except Exception:
-      print("Unexpected error while connecting to the DB :", sys.exc_info()[0])
+  except Exception as ex:
+      print("Unexpected error while connecting to the DB :", ex)
       print("Application exists.")
       sys.exit(2)
 
@@ -57,10 +57,8 @@ class BBCSpider(Spider):
       print ("Starting traversing them")
 
       linkPattern = re.compile("^\/[\s\S]*")
-      count = 0
       for title in titles:
           if not title in crawledTitles:
-              count=count+1
               crawledTitles.append(title)
               item = BBCItem()
               item["title"] = title
@@ -82,13 +80,11 @@ class BBCSpider(Spider):
               api = urllib2.urlopen("http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm")
               page = api.read()
               tree = etree.HTML(page)
-
               #table = tree.xpath("//div[@class='story-body__inner']")
               table = tree.xpath("//style[@type='text/css']")
               res = etree.tostring(table)
               print("res is ")
               """
-
               #print(div0.text_content())
               title = innerTree.xpath("//title/text()")
               headline = innerTree.xpath("//p[@class='story-body__introduction']/text()")
@@ -116,17 +112,12 @@ class BBCSpider(Spider):
                   my_collection = mydb['Articles']
 
                   keyword_handler= keywordHandler()
-
-
                   keywords=keyword_handler.getKeywords(cleanedInnerBodyText)
 
                   """
-
                   print("innerBody text.")
                   print (cleanedInnerBodyText)
-
                   print("keywords are...")
-
                   print keywords
                   """
 
