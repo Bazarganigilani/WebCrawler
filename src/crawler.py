@@ -151,12 +151,6 @@ class BBCSpider(Spider):
                   sys.exit(2)
               yield item
 
-                  # record_id = mydb.mytable.insert(myrecord)
-
-
-                  # print("record id %s" %record_id)
-
-
 
 
 
