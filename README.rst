@@ -1,4 +1,4 @@
-Run "main -h" for instructions how to use this program.
+Run "main -h" for instructions how to use this program
 The program is involved two steps:
 1- It crawls the web pages from BBC.com and insert article pages as an entry to the MongoDB database
 2- it fetches the relevant articles based on a keyword 
