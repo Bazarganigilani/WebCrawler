@@ -108,7 +108,6 @@ class BBCSpider(Spider):
               #remove other tags as well
               innerBodyText=cleanedTag.text_content().encode('utf-8')
 
-
               cleanedInnerBodyText=" ".join(innerBodyText.split())
 
               try:
@@ -127,7 +126,7 @@ class BBCSpider(Spider):
 
                   """
 
-                  print("innerBody text")
+                  print("innerBody text.")
                   print (cleanedInnerBodyText)
 
                   print("keywords are...")
@@ -150,9 +149,6 @@ class BBCSpider(Spider):
                   print ("Application exists.")
                   sys.exit(2)
               yield item
-
-
-
 
 
 
